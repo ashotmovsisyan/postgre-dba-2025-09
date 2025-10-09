@@ -5,8 +5,8 @@
 **Скриншоты:**
 
 | ![screenshot1](../../resources/hw-1/10001-VM-dashboard.png)       | ![screenshot2](../../resources/hw-1/10002-Connection-to-the-server.png) |
-|-------------------------------------------------------------------|-------------------------------------------|
-| ![screenshot3](../../resources/hw-1/10003-Connecting-to-psql.png) | ![screenshot4](../../resources/hw-1/10004-autocommit-off.png) |
+|-------------------------------------------------------------------|-------------------------------------------------------------------------|
+| ![screenshot3](../../resources/hw-1/10003-Connecting-to-psql.png) | ![screenshot4](../../resources/hw-1/10004-autocommit-off.png)           |
 
 
 ## Задания
