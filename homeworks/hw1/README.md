@@ -59,7 +59,7 @@ insert into persons (first_name, second_name) values('sergey', 'sergeev');
 set transaction isolation level repeatable read;
 ```
 
-Убедимся что уровень изоляции поставленною правильно.
+Убедимся что уровень изоляции поставленно правильно.
 
 ![screenshot2-1](../../resources/hw-1/2-1.png)
 
@@ -86,4 +86,5 @@ insert into persons (first_name, second_name) values ('sveta', 'svetova');
 
 * видите ли вы новую запись и если да то почему?
 > После завершения транзакции, при выполнении нового запроса для получения данных, мы уже имеем дело с новой транзакцией, в которой должны быть видны все зафиксированные изменения.
+
 
