@@ -12,7 +12,7 @@
 ## Задания
 
 * в первой сессии новую таблицу и наполнить ее данными 
-```postgresql
+```sql
 create table persons (
     id serial,
     first_name text,
@@ -26,7 +26,7 @@ commit;
 * посмотреть текущий уровень изоляции: `show transaction isolation level`
 
 команда: 
-```postgresql
+```sql
 show transaction isolation level;
 ```
 результат:
@@ -39,7 +39,7 @@ show transaction isolation level;
 
 * начать новую транзакцию в обоих сессиях с дефолтным (не меняя) уровнем изоляции
 * в первой сессии добавить новую запись 
-```postgresql
+```sql
 insert into persons (first_name, second_name) values('sergey', 'sergeev');
 ```
 * сделать `select * from persons;` во второй сессии
@@ -55,7 +55,7 @@ insert into persons (first_name, second_name) values('sergey', 'sergeev');
 > Да, новая запись видна. После того как мы успешно завершили транзакцию в первой сессии, во второй сессии становится видна новая добавленная строка. При таком уровне изоляции можно читать только те данные, которые были зафиксированы до момента выполнения запроса `SELECT`.
 
 * начать новые, но уже `repeatable read` транзакции - 
-```postgresql
+```sql
 set transaction isolation level repeatable read;
 ```
 
@@ -64,7 +64,7 @@ set transaction isolation level repeatable read;
 ![screenshot2-1](../../resources/hw-1/2-1.png)
 
 * в первой сессии добавить новую запись 
-```postgresql
+```sql
 insert into persons (first_name, second_name) values ('sveta', 'svetova');
 ```
 * сделать `select * from persons` во второй сессии.
