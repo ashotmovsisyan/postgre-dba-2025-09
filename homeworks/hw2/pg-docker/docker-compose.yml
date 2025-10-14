@@ -1,0 +1,49 @@
+name: "otus"
+
+services:
+  pg-server:
+    image: postgres:${POSTGRES_VERSION:-18}-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_INITDB_SKIP_TZINFO: "yes"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB -h 127.0.0.1 -p 5432" ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
+    volumes:
+      - /var/lib/postgresql/:/var/lib/postgresql/
+    ports:
+      - 0.0.0.0:${POSTGRES_EXT_PORT:-5432}:5432
+    networks:
+      - pg_net
+
+  pg-client:
+    image: postgres:${POSTGRES_VERSION:-18}-alpine
+    command: ["tail", "-f", "/dev/null"]
+    environment:
+      PGHOST: pg-server
+      PGUSER: ${POSTGRES_USER}
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      PGDATABASE: ${POSTGRES_DB}
+    depends_on:
+      pg-server:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD-SHELL", "psql -c 'select 1' >/dev/null 2>&1 || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    tty: true
+    stdin_open: true
+    networks:
+      - pg_net
+
+networks:
+  pg_net:
+    driver: bridge
