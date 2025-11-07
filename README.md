@@ -9,3 +9,4 @@
 | 1 | Работа с уровнями изоляции транзакции в PostgreSQL   | [Перейти →](./homeworks/hw1/README.md) |
 | 2 | Установка и настройка PostgteSQL в контейнере Docker | [Перейти →](./homeworks/hw2/README.md) |
 | 3 | Установка и настройка PostgreSQL                     | [Перейти →](./homeworks/hw3/README.md) |
+| 4 | Работа с базами данных, пользователями и правами     | [Перейти →](./homeworks/hw4/README.md) |
